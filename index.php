@@ -12,23 +12,23 @@
     <title>Document</title>
 </head>
 <body class="bg-[#1B242E] bg-cover flex flex-row">
-    
+
     <div class="flex flex-col">
 
         <!-- Hello, je sert à faire l'interface des messages! (la partie chiante) -->
-        <main class="bg-[#171E26] bg-cover h-175 w-auto ml-20 border-2 border-t-0 border-[#2577D9] rounded-[10px]">  
-            
+        <main class="bg-[#171E26] bg-cover h-175 w-auto ml-20 border-2 border-t-0 border-[#2577D9] rounded-[10px]">  
+
         </main>
 
         <!-- Hello, je suis l'ensemble des trucs en bas de page, regarde mes sections ! -->
         <footer class="flex flex-row">
 
             <!-- Hello, je sert à montrer sur quel compte l'utillisateur est connecté
-            (possiblement aussi à mettre tout ce qui est lié au paramètres
-            mais ca on verras plus tard) -->
+            (possiblement aussi à mettre tout ce qui est lié au paramètres
+            mais ca on verras plus tard) -->
 
-
-            <section class="bg-[#202A36] border-2 border-b-0 border-l-0 border-[#2577D9] rounded-[10px] w-60 h-30 mt-5 p-3">
+            <!-- Section du compte actuel -->
+            <section class="bg-[#202A36] border-2 border-b-0 border-l-0 border-[#2577D9] rounded-[10px] w-60 h-30 mt-5 p-3 flex flex-col">
 
                 <p class="text-white">Session actuelle :</p>
 
@@ -38,9 +38,16 @@
                         <?= htmlspecialchars($_SESSION['username']) ?>
                     </p>
 
+                    <!-- Bouton pour changer de session -->
+                    <div class="flex justify-end mt-auto">
+                        <button type="button" onclick="openConnexion()" class="text-blue-400 hover:text-blue-300 underline text-sm">
+                            Changer de session
+                        </button>
+                    </div>
+
                 <?php else: ?>
 
-                    <button type="button" onclick="openConnexion()" class="text-blue-400 underline">
+                    <button type="button" onclick="openConnexion()" class="text-blue-400 hover:text-blue-300 underline">
                         Se connecter
                     </button>
 
@@ -51,7 +58,7 @@
             <!-- Fenêtre pop-up de connexion -->
             <section id="fenetreConnexion" class="hidden fixed inset-0 z-50 bg-black/60 items-center justify-center p-4">
 
-                <div class="bg-[#202A36] border border-[#2577D9] rounded-xl p-6 w-full max-w-md">
+                <div class="bg-[#202A36] border-[#2577D9] border-2 rounded-xl p-6 w-full max-w-md">
 
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-white text-xl font-bold">
@@ -59,12 +66,12 @@
                         </h2>
 
                         <button type="button" onclick="closeConnexion()" class="text-white text-2xl">
-                            &times;
+                            x
                         </button>
                     </div>
 
                     <p class="text-gray-300 mb-4">
-                        Choisis ton pseudonyme pour rejoindre le chat.
+                         Choisis ton pseudonyme pour rejoindre le chat.
                     </p>
 
                     <form action="traitement-connexion.php" method="POST">
@@ -73,20 +80,10 @@
                             Pseudonyme
                         </label>
 
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            maxlength="50"
-                            required
-                            class="w-full rounded-md p-2 mb-4
-                                bg-[#151D28] text-white border
-                                border-gray-600"
-                            placeholder="Ton pseudonyme"
-                        >
+                        <input type="text" id="username" name="username" maxlength="50" required class="w-full rounded-md p-2 mb-4 bg-[#151D28] text-white border border-[#2577D9]" placeholder="Ton pseudonyme">
 
                         <button type="submit" class="w-full bg-[#2577D9] hover:bg-blue-600 text-white rounded-md p-2">
-                            Rejoindre le chat
+                            Se connecter
                         </button>
 
                     </form>
@@ -95,7 +92,7 @@
 
             <!-- Hello, je sert à afficher l'input de l'utillisateur et le bouton d'envoi -->
             <section class="flex flex-row mt-10 ml-10">
-                
+
                 <!-- Hello, je suis l'input ! -->
                     <textarea name="" id="" class="bg-[#171E26] border-2 border-[#2577D9] rounded-[10px] h-15 w-190"></textarea>
                 <!-- Hello, je suis le bouton d'envoi -->
@@ -111,7 +108,7 @@
 
     <!-- Hello, je sert à faire la liste des contacts (la partie modérément chiante) -->
     <aside class=" bg-[#1B242E] border-[#2577D9] border-2 h-auto w-70 rounded-[10px] ml-auto border-b-0 border-r-0">
-    
+
     </aside>
 
     <script>
@@ -130,4 +127,4 @@
         }
     </script>
 </body>
-</html> 
+</html>

@@ -1,20 +1,26 @@
 <?php
 
-//     require_once("connexion.php");
+    require_once("connexion.php");
 
-//         var_dump($_POST);
+        // var_dump($_POST);
 
-//         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-//             $requete = $mysqlClient->prepare("INSERT INTO patients (lastname, firstname, birthdate, phone, mail) VALUES (:lastname, :firstname, :birthdate, :phone, :mail)");
-//             $requete->execute([
-//                 "lastname"=>$_POST["lastName"],
-//                 "firstname"=>$_POST["firstName"],
-//                 "birthdate"=>$_POST["birthDate"],
-//                 "phone"=>$_POST["phone"],
-//                 "mail"=>$_POST["mail"],
-//             ]);
-//         }
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $requete = $mysqlClient->prepare("INSERT INTO messages (user_id, content, created_at, ip_adress) VALUES (:user_id, :content, :created_at, :ip_adress)");
+            $requete->execute([
+                "user_id"=>$_POST["userId"],
+                "content"=>$_POST["content"],
+                "created_at"=>$_POST["createdAt"],
+                "ip_adress"=>$_POST["ipAdress"],
+            ]);
+        }
 
-// header('Location: liste-patients.php');
-// exit;
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $requete = $mysqlClient->prepare("INSERT INTO users (username) VALUES (:username)");
+            $requete->execute([
+                "username"=>$_POST["userName"],
+            ]);
+        }
+
+header('Location: index.php');
+exit;
 ?>

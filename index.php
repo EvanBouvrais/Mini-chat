@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
+    <link href="./output.css?v=<?= filemtime(__DIR__ . '/output.css') ?>" rel="stylesheet">
     <title>Document</title>
 </head>
 <body class="bg-[#1B242E] bg-cover flex flex-row">
@@ -16,7 +16,7 @@
     <div class="flex flex-col">
 
         <!-- Hello, je sert à faire l'interface des messages! (la partie chiante) -->
-        <main class="bg-[#171E26] bg-cover h-175 w-auto ml-20 border-2 border-t-0 border-[#2577D9] rounded-[10px]">  
+        <main id="messages" class="bg-[#171E26] bg-cover h-175 w-auto ml-20 border-2 border-t-0 border-[#2577D9] rounded-[10px] overflow-y-auto p-4 flex flex-col gap-2" aria-live="polite">
             
         </main>
 
@@ -97,20 +97,21 @@
             <section class="flex flex-row mt-10 ml-10">
                 
                 <!-- Hello, je suis l'input ! -->
-                    <textarea name="" id="" class="bg-[#171E26] border-2 border-[#2577D9] rounded-[10px] h-15 w-190"></textarea>
+                    <textarea id="messageInput" class="bg-[#171E26] border-2 border-[#2577D9] rounded-[10px] h-15 w-190 text-white" aria-label="Votre message" placeholder="Écrivez un message..."></textarea>
                 <!-- Hello, je suis le bouton d'envoi -->
-                <button class="border-2 bg-[#3E8FF0] rounded-[10px] h-15 w-15 ml-1 p-1 pt-1 border-[#2577D9]">
+                <button type="button" class="border-2 bg-[#3E8FF0] rounded-[10px] h-15 w-15 ml-1 p-1 pt-1 border-[#2577D9]" onclick="envoyerMessage()">
                     <img src="assets/paper-plane-regular-full.svg" alt="Send">
                 </button>
 
             </section>
 
         </footer>
+        <p id="messageStatus" class="text-red-400 ml-10" role="status" aria-live="polite"></p>
 
     </div>
 
     <!-- Hello, je sert à faire la liste des contacts (la partie modérément chiante) -->
-    <aside class=" bg-[#1B242E] border-[#2577D9] border-2 h-auto w-70 rounded-[10px] ml-auto border-b-0 border-r-0">
+    <aside class="bg-[#1B242E] border-[#2577D9] border-2 h-auto w-70 rounded-[10px] ml-auto border-b-0 border-r-0">
     
     </aside>
 
@@ -129,5 +130,6 @@
             fenetre.classList.add('hidden');
         }
     </script>
+    <script src="index.js?v=<?= filemtime(__DIR__ . '/index.js') ?>" defer></script>
 </body>
-</html> 
+</html>

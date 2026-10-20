@@ -1,6 +1,6 @@
 <?php
 
-    require_once("connexion.php");
+    require_once("db.php");
 
         // var_dump($_POST);
 

@@ -1,4 +1,5 @@
 <?php
+    session_start(); 
 
 ?>
 
@@ -25,8 +26,71 @@
             <!-- Hello, je sert à montrer sur quel compte l'utillisateur est connecté
             (possiblement aussi à mettre tout ce qui est lié au paramètres
             mais ca on verras plus tard) -->
-            <section class="bg-[#202A36] border-2 border-b-0 border-l-0 border-[#2577D9] rounded-[10px] w-60 h-30 mt-5">
-                <p class="text-white">Session actuelle:</p>
+
+
+            <section class="bg-[#202A36] border-2 border-b-0 border-l-0 border-[#2577D9] rounded-[10px] w-60 h-30 mt-5 p-3">
+
+                <p class="text-white">Session actuelle :</p>
+
+                <?php if (isset($_SESSION['username'])): ?>
+
+                    <p class="text-white">
+                        <?= htmlspecialchars($_SESSION['username']) ?>
+                    </p>
+
+                <?php else: ?>
+
+                    <button type="button" onclick="openConnexion()" class="text-blue-400 underline">
+                        Se connecter
+                    </button>
+
+                <?php endif; ?>
+
+            </section>
+
+            <!-- Fenêtre pop-up de connexion -->
+            <section id="fenetreConnexion" class="hidden fixed inset-0 z-50 bg-black/60 items-center justify-center p-4">
+
+                <div class="bg-[#202A36] border border-[#2577D9] rounded-xl p-6 w-full max-w-md">
+
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-white text-xl font-bold">
+                            Connexion
+                        </h2>
+
+                        <button type="button" onclick="closeConnexion()" class="text-white text-2xl">
+                            &times;
+                        </button>
+                    </div>
+
+                    <p class="text-gray-300 mb-4">
+                        Choisis ton pseudonyme pour rejoindre le chat.
+                    </p>
+
+                    <form action="traitement-connexion.php" method="POST">
+
+                        <label for="username" class="text-white block mb-2">
+                            Pseudonyme
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            maxlength="50"
+                            required
+                            class="w-full rounded-md p-2 mb-4
+                                bg-[#151D28] text-white border
+                                border-gray-600"
+                            placeholder="Ton pseudonyme"
+                        >
+
+                        <button type="submit" class="w-full bg-[#2577D9] hover:bg-blue-600 text-white rounded-md p-2">
+                            Rejoindre le chat
+                        </button>
+
+                    </form>
+                </div>
             </section>
 
             <!-- Hello, je sert à afficher l'input de l'utillisateur et le bouton d'envoi -->
@@ -50,6 +114,20 @@
     
     </aside>
 
+    <script>
+        function openConnexion() {
+            const fenetre = document.getElementById('fenetreConnexion');
 
+            fenetre.classList.remove('hidden');
+            fenetre.classList.add('flex');
+        }
+
+        function closeConnexion() {
+            const fenetre = document.getElementById('fenetreConnexion');
+
+            fenetre.classList.remove('flex');
+            fenetre.classList.add('hidden');
+        }
+    </script>
 </body>
 </html> 
